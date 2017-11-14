@@ -1,0 +1,28 @@
+{
+  "name": "GkFm",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "fastclick": "^1.0.6",
+    "fetch": "^1.1.0",
+    "rc-slider": "^7.0.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-fontawesome": "^1.6.1",
+    "react-helmet": "^5.2.0",
+    "react-router": "^2.8.1",
+    "react-weui": "^1.0.3",
+    "superagent": "^3.6.0",
+    "weui": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "react-scripts": "1.0.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

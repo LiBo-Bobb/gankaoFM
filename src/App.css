@@ -1,0 +1,569 @@
+.App {
+    /* text-align: center;*/
+}
+
+.music {
+    position: relative;
+    overflow: auto;
+    border: 0px solid #efefef;
+}
+.music .wrp {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    /*height:260px;*/
+    height:325px;
+
+}
+.music .wrp .houtui:active{
+    opacity:0.5;
+}
+.music .wrp .houtui:hover{
+    cursor: pointer;
+}
+.music .wrp .qianjin:active{
+    opacity:0.5;
+}
+.music .wrp .qianjin:hover{
+    cursor: pointer;
+}
+.music .playerWrp {
+    width: 100%;
+    border: 0px solid red;
+}
+
+.music .bg-blur {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -o-filter: blur(4px);
+    -ms-filter: blur(4px);
+    filter: blur(4px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+
+
+.music .countDown {
+    width: 25%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    position: absolute;
+    right: 0px;
+    background-color: #12B7F6;
+    top: 25px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.music .speedPlay {
+    width: 17%;
+    position: absolute;
+    top: 20%;
+    right: 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.3);
+}.music .speedPlay:hover{
+     cursor: pointer;
+ }
+
+
+ .music .singer {
+    position: relative;
+    width: 60%;
+    margin: auto;
+    border: 0px solid #457c9c;
+    /*background: url(./images/singer.png);*/
+    /* background-size: 100% 100%;*/
+    border-radius: 50%;
+}
+
+.music .fmTitle {
+    border: 0px solid red;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    padding-top: 10px;
+}
+.music .singer .rotate {
+    -webkit-animation: rot 10s linear infinite;
+    -moz-animation: rot 10s linear infinite;
+    -ms-animation: rot 10s linear infinite;
+    -o-animation: rot 10s linear infinite;
+    animation: rot 10s linear infinite;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+.music .singer .rotate.stop {
+    animation-play-state: paused;
+}
+
+.music .singer .rotate.start {
+    animation-play-state: running;
+}
+@-webkit-keyframes rot {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@-moz-keyframes rot {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@-ms-keyframes rot {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@-o-keyframes rot {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes rot {
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.music .singerName .topIcon {
+    height: 23px;
+    border: 0px solid gray;
+}
+
+.music .singerName .topIcon:nth-child(1) {
+
+}
+
+.music .singerName .topIcon:nth-child(2) {
+    font-size: 14px;
+}
+
+.music .singerName .topIcon:nth-child(3) {
+    height: 30px;
+    width: 30px;
+}
+
+.music .singerName {
+    height: 35px;
+    margin: 10px 15px;
+    border: 0px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.music .iconContent {
+    height: 60px;
+    border: 0px solid gray;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.music .iconContent .icon {
+    width: 26%;
+    height: 45px;
+    border-right: 1px solid gray;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.music .iconBtn {
+    height: 63px;
+    margin: 10px 15px 10px;
+    border: 0px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.music .iconBtn .btn {
+    width: 70px;
+    /*height: 30px;*/
+    border: 0px solid gray;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.music .iconBtn .btn:hover{
+    cursor: pointer;
+}
+.music .iconBtn .play{
+    cursor: pointer;
+}
+/*.music .iconBtn .btn:active{*/
+    /*opacity:0.5;*/
+/*}*/
+
+.music .iconBtn .btn:nth-child(1) {
+    margin-top: 2%;
+}
+
+
+
+.music .iconBtn .btn:nth-child(5) {
+    margin-top: 2%;
+}
+
+.music .jindu {
+    margin: 0px 6px 0px;
+    border: 0px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.music .jindu .bar {
+    border: 0px solid gray;
+    width: 60%;
+}
+.timeShow{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 8px;
+}
+
+.music .detail {
+    height: 50px;
+    border: 0px solid gray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.music .package {
+    height: 100px;
+    border-top: 1px solid gray;
+}
+.music .detail .botBtn {
+    font-size: 16px;
+    height: 35px;
+    width: 90px;
+    margin: 10px 15px;
+    text-align: center;
+    line-height: 200%;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.music .detail .botBtn img {
+    width: 18px;
+}
+
+.weui-cells {
+    margin-top: 0;
+}
+
+.weui-navbar__item {
+    color: #666666;
+    border-top:1px solid #ECECEC;
+}
+
+.weui-navbar {
+    background-color: white;
+}
+
+.weui-navbar__item:after {
+    border-right: 0px solid #CCCCCC;
+}
+
+.weui-navbar__item.weui-bar__item_on {
+    background-color: white;
+    color: #2aaae2;
+    border-bottom: 2px solid #2aaae2;
+}
+
+/*详情区域*/
+.bottDetail {
+    border: 1px solid gray;
+    width: 100%;
+    height: 300px;
+}
+
+.bottDetail .detailContent {
+    border: 1px solid red;
+    width: 100px;
+    height: 100px;
+}
+
+/*评论区样式*/
+.comment {
+    border-top: 0px solid gray;
+    border-bottom: 0px solid gray;
+    width: 100%;
+}
+
+.comment .commentBox {
+    border: 1px solid #ECECEC;
+    background-color: white;
+    padding-left: 15px;
+    padding-bottom: 35px;
+}
+
+.comment .commentTop {
+    border: 0px solid red;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comment .commentTop .img {
+    border: 1px solid #ECECEC;
+    width: 39px;
+    height: 39px;
+    -webkit-border-radius: 39px;
+    -moz-border-radius: 39px;
+    border-radius: 39px;
+}
+
+.comment .commentTop .teacherName {
+    border: 0px solid blue;
+    width: 70%;
+    height: 100%;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.comment .commentTop .teacherName .delete :active {
+    background-color: #2aaae2;
+}
+
+.comment .commentTop .teacherName .teacher {
+    color: #4A4A4A;
+    font-size: 14px;
+}
+
+.comment .commentTop .teacherName .time {
+    color: #BDBDBD;
+    font-size: 13px;
+
+}
+
+.comment .commentMid {
+    border: 0px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: -5%;
+}
+
+.comment .commentMid .empty {
+    border: 0px solid green;
+    width: 120px;
+    height: 80px;
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    border-radius: 80px;
+}
+
+.comment .commentMid .teacherName .teacher {
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+.comment .bott {
+    border: 0px solid red;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment .bott .left {
+    border: 0px solid black;
+    height: 50px;
+    width: 50%;
+}
+
+.comment .bott .right {
+    border: 0px solid black;
+    height: 50px;
+    width: 50%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.comment .bott .right .right1 {
+    border: 0px solid red;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.comment .bott .right .right1 .icon {
+    border: 0px solid red;
+    height: 14px;
+    width: 16px;
+}
+
+.comment .bott .right .right1 .reply {
+    border: 0px solid green;
+    height: 15px;
+    width: 60px;
+    font-size: 13px;
+    color: #4A4A4A;
+
+}
+
+.comment .bott .right .right2 {
+    border: 0px solid red;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.comment .bott .right .right2 .icon {
+    border: 0px solid red;
+    height: 14px;
+    width: 16px;
+}
+
+.comment .bott .right .right2 .reply {
+    border: 0px solid green;
+    height: 15px;
+    width: 60px;
+    font-size: 13px;
+    color: #4A4A4A;
+}
+
+/*.weui-article {
+    padding: 0px 0px;
+    font-size: 15px;
+    background: #FAFAFA;
+}*/
+
+.comment .conmmentInput {
+    border: 1px solid #ECECEC;
+    background-color: #FAFAFA;
+    width: 100%;
+    height: 56px;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.comment .conmmentInput .leftInput {
+    border: 1px solid #ECECEC;
+    width: 280px;
+    height: 36px;
+    background: white;
+}
+
+.comment .conmmentInput .rightIcon {
+    border: 0px solid black;
+    width: 60px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weui-cell__ft {
+    display: none;
+}
+
+.list-title {
+    font-size: 14px;
+}
+
+.list-title.active {
+    color: rgb(254, 142, 28);
+}
+
+.weui-actionsheet {
+    visibility: hidden;
+}
+
+.weui-actionsheet.weui-actionsheet_toggle {
+    visibility: visible;
+}
+.publicComment {
+    color: #ff0000;
+    font-size: 10px;
+}
+
+.deleteOneGrade:active{
+    opacity:0.5;
+}
+.deleteOneGrade:hover{
+    cursor: pointer;
+}
+/*评论内容输入区域【取消按钮】*/
+.cancel_LI:hover{
+    cursor: pointer;
+}
+/*【发布】按钮*/
+.release_LI{
+    cursor: pointer;
+}
+/*查看所有评论*/
+.checkAllComments_li:hover{
+    cursor: pointer;
+}
+
+.lodeMore_li:hover{
+    cursor: pointer;
+}
+
+
+.detailSection_li{
+    margin-bottom: 8.5em;
+}
