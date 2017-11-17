@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import "rc-slider/assets/index.css";
 import CommentList from "./components/CommentList"
+import 'react-weui'
 import "weui";
-import "react-weui/lib/react-weui.min.css";
+import 'react-weui/build/packages/react-weui.css';
 import "./App.css";
 import request from 'superagent';
 import musicList from "./img/musicList.png";
@@ -49,7 +50,7 @@ class App extends Component {
 
             //初始音频索引
             currentFm: 0,
-              //test
+            //test
             //当前时间
             currentTime: "00:00",
 
@@ -301,16 +302,9 @@ class App extends Component {
                         // console.log("请求FM数据的全部返回内容........")
                         // console.log(res.body)
                         let {fmSections} = res.body;
-                        console.log("music数据资源[].......")
-                        console.log(fmSections)
+                        // console.log("music数据资源[].......")
+                        // console.log(fmSections)
                         let currentFm = 0;
-                        for (let i = 0, len = fmSections.length; i < len; i++) {
-                            if (this.sectionId === fmSections[i].id) {
-                                currentFm = i;
-                                this.setState({currentFm: currentFm})
-                                break;
-                            }
-                        }
                         let state = {
                             //FM音频资源[]
                             music: fmSections,
@@ -319,7 +313,16 @@ class App extends Component {
                             //每个FM文件的commentSubjectKey
                             commentSubjectKey: fmSections[currentFm].commentSubjectKey
                         };
-                        this.setState(state)
+                        for (let i = 0, len = fmSections.length; i < len; i++) {
+                            if (this.sectionId === fmSections[i].id) {
+                                currentFm = i;
+                                break;
+                            }
+                        }
+                        state.currentFm = currentFm;
+                        if (!this.isVideo(fmSections[currentFm])) {
+                            this.setState(state)
+                        }
                         // console.log("当前索引音频的commentSubjectKey.......")
                         // console.log(fmSections[currentFm].commentSubjectKey)
                         // console.log(this.state.commentSubjectKey)
@@ -396,8 +399,6 @@ class App extends Component {
         if (!changeTime && changeTime !== Number(changeTime)) {
             changeTime = 0
         }
-
-
         let m = this.zero(Math.floor(changeTime % 3600 / 60)); //分
         let s = this.zero(Math.floor(changeTime % 60)); //秒
         return m + ':' + s;
@@ -420,15 +421,7 @@ class App extends Component {
             // currentFm = music.length - 1
             return
         }
-        this.setState({currentFm, subjectContent: music[currentFm].descriptionUrl})
-        if (!this.state.ended) {
-            this.setState({ended: true})
-        }
-        //播放音频
-        setTimeout(() => {
-            this.play()
-            this.setState({commentSubjectKey: currentMusic.commentSubjectKey})
-        }, 30)
+        this.playAudio(currentFm);
     }
     //播放结束
     playDone = () => {
@@ -454,14 +447,7 @@ class App extends Component {
             // currentFm = 0
             return
         }
-        this.setState({currentFm})
-        if (!this.state.ended) {
-            this.setState({ended: true})
-        }
-        setTimeout(() => {
-            this.play()
-            this.setState({commentSubjectKey: currentMusic.commentSubjectKey})
-        }, 30)
+        this.playAudio(currentFm);
 
     };
     // 控制播放进度（直接拖动的时候）
@@ -547,6 +533,34 @@ class App extends Component {
         return "other"
     }
 
+    //判断当前资源是音频还是视频
+    isVideo = (music) => {
+        if (music.redirectUrl != '') {
+            window.location.href = music.redirectUrl;
+            return true;
+        }
+        return false;
+    }
+
+    playAudio = (index) => {
+        let currentMusic = this.state.music[index];
+        if (!this.isVideo(currentMusic)) {
+            let state = {
+                currentFm: index,
+                subjectContent: currentMusic.descriptionUrl,
+                commentSubjectKey: currentMusic.commentSubjectKey
+            };
+            if (!this.state.ended) {
+                state.ended = true;
+            }
+            if (this.state.isShowFmList) {
+                state.isShowFmList = false;
+            }
+            this.setState(state);
+            setTimeout(this.play, 30)
+        }
+    }
+
     render() {
         let {music, subjectContent, commentSubjectKey, currentFm, duration, currentTime, countDown, ended, isShowInputArea, isShowFmList, goodMarkedByMe} = this.state;
         let animationClassName = !this.state.ended ? 'rotate start' : 'rotate stop';
@@ -575,6 +589,9 @@ class App extends Component {
         //检测终端类型
         let isIOS = this.isIOS()
         // console.log("浏览器",browserType)
+
+        //判断当前资源是音频还是视频】
+        // console.log(isVideo)
         return (
             <div>
                 <div className="App" style={{display: this.props.children ? "none" : "block"}}>
@@ -635,10 +652,10 @@ class App extends Component {
                                     }} alt=""/></div>
                                 </div>
                             </div>
-                            {/*  音频播放器控件*/}
+                            {/* 音频播放器控件*/}
                             <div>
                                 <audio onEnded={this.playDone} ref="audio"
-                                       src={`${typeof music[currentFm] === 'object' ? music[currentFm].src : ''}`}>
+                                       src={`${typeof music[currentFm] === 'object' ? music[currentFm].src : ""}`}>
                                 </audio>
                             </div>
                         </div>
@@ -827,19 +844,7 @@ class App extends Component {
                             // console.log('FM音频列表当前的对象........');
                             // console.log(music[num]);
                             //{}当前索引的对象资源
-                            let currentMusic = music[num];
-                            this.setState({currentFm: num, commentSubjectKey: currentMusic.commentSubjectKey});
-                            setTimeout(() => {
-                                if (ended) {
-                                    this.play()
-                                } else {
-                                    this.setState({ended: true})
-                                    setTimeout(() => {
-                                        this.play()
-                                    }, 0)
-                                }
-                            }, 20)
-                            this.setState({isShowFmList: false})
+                            this.playAudio(num);
                         }}
                         //当前状态音频对象资源
                         currentMusic={this.state.music[this.state.currentFm]}
