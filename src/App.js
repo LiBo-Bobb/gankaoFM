@@ -347,51 +347,6 @@ class App extends Component {
 
     }
 
-    /* getFmData = () => {
-         try {
-             request.get(this.getFmApi + "/api/fm/showGrowCourse?id=" + this.courseId).then(
-                 res => {
-                     // console.log("请求FM数据的全部返回内容........")
-                     // console.log(res.body)
-                     let {fmSections} = res.body;
-                     console.log("music数据资源[].......")
-                     console.log(fmSections)
-                     let currentFm = 0;
-                     for (let i = 0, len = fmSections.length; i < len; i++) {
-                         if (this.sectionId === fmSections[i].id) {
-                             currentFm = i;
-                             this.setState({currentFm: currentFm})
-                             break;
-                         }
-                     }
-                     let state = {
-                         //FM音频资源[]
-                         music: fmSections,
-                         //每个FM详情信息
-                         subjectContent: fmSections[currentFm].descriptionUrl,
-                         //每个FM文件的commentSubjectKey
-                         commentSubjectKey: fmSections[currentFm].commentSubjectKey
-                     };
-                     this.setState(state)
-                     // console.log("当前索引音频的commentSubjectKey.......")
-                     // console.log(fmSections[currentFm].commentSubjectKey)
-                     // console.log(this.state.commentSubjectKey)
-                 }
-             ).catch(
-                 err => {
-                     if (err) {
-                         console.log(err.message)
-                         this.setState({isShowDialog: true})
-                     }
-
-                 }
-             )
-         } catch (err) {
-             // console.log(err.message)
-             alert("通讯异常，请稍后再试！");
-         }
-
-     }*/
 
 
     //转化时间格式为00：00
