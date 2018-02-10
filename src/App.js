@@ -281,7 +281,6 @@ class App extends Component {
         //获取fm接口数据
         this.getFmData()
     }
-
     //获取FM数据
     getFmData = () => {
         // http://test.gankao.com/api/fm/showGrowCourse?id=19862
