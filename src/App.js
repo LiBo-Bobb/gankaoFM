@@ -42,6 +42,7 @@ class App extends Component {
 
         //传过来的sectionId是多少，就优先播放该音频
         this.sectionId = window._fm.sectionId;
+
         //fM数据接口前缀
         this.getFmApi = window._fm.getFmApi;
         this.state = {
@@ -301,9 +302,12 @@ class App extends Component {
                     try {
                         // console.log("请求FM数据的全部返回内容........")
                         // console.log(res.body)
-                        let {fmSections} = res.body;
+                        let {fmSections, type} = res.body;
                         // console.log("music数据资源[].......")
                         // console.log(fmSections)
+                        if (type === 'fm') {
+                            this.sectionId = this.courseId;
+                        }
                         let currentFm = 0;
                         let state = {
                             //FM音频资源[]
@@ -314,7 +318,7 @@ class App extends Component {
                             commentSubjectKey: fmSections[currentFm].commentSubjectKey
                         };
                         for (let i = 0, len = fmSections.length; i < len; i++) {
-                            if (this.sectionId === fmSections[i].id) {
+                            if (this.sectionId == fmSections[i].id) {
                                 currentFm = i;
                                 break;
                             }
@@ -346,7 +350,6 @@ class App extends Component {
         }
 
     }
-
 
 
     //转化时间格式为00：00
@@ -490,7 +493,7 @@ class App extends Component {
 
     //判断当前资源是音频还是视频
     isVideo = (music) => {
-        if (music.redirectUrl != '') {
+        if (typeof music.redirectUrl !== 'undefined' && music.redirectUrl !== '') {
             window.location.href = music.redirectUrl;
             return true;
         }
@@ -544,7 +547,6 @@ class App extends Component {
         //检测终端类型
         let isIOS = this.isIOS()
         // console.log("浏览器",browserType)
-
         //判断当前资源是音频还是视频】
         // console.log(isVideo)
         return (
