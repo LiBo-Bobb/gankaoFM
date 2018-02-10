@@ -244,8 +244,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-
-
         // console.log(this);
         //监听音频当前的时间
         this.refs.audio.ontimeupdate = () => {
@@ -264,16 +262,7 @@ class App extends Component {
                     this.setState({currentTime})
                 }
             }
-
-
         };
-        /* this.refs.audio.oncanplay = () => {
-         console.log(this.refs.audio.currentTime);
-         /!*  console.dir(this.refs.audio.duration);*!/
-         this.setState({
-         duration: this.time(this.refs.audio.duration),
-         })
-         }*/
         //监听音频的总时间
         this.refs.audio.ondurationchange = () => {
             this.setState({
@@ -297,7 +286,8 @@ class App extends Component {
     getFmData = () => {
         // http://test.gankao.com/api/fm/showGrowCourse?id=19862
         try {
-            request.get(this.getFmApi + "/api/fm/showGrowCourse?id=" + this.courseId).then(
+            // this.getFmApi + "/api/fm/showGrowCourse?id=" + this.courseId
+            request.get("showGrowCourse.json").then(
                 res => {
                     try {
                         // console.log("请求FM数据的全部返回内容........")
@@ -552,7 +542,6 @@ class App extends Component {
         return (
             <div>
                 <div className="App" style={{display: this.props.children ? "none" : "block"}}>
-                    {/*<Link to="/AllComments">to List</Link>*/}
                     <div className="music">
                         {/*所有通讯异常显示该dialog*/}
                         <Dialog type="ios" title={this.state.dialogStyle.title} buttons={this.state.dialogStyle.buttons}
